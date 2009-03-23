@@ -1,0 +1,34 @@
+<h2>Showing Form Responses for <%= params[:name] %></h2>
+
+<% if @form_responses %>
+  <table>
+  <% for form_response in @form_responses %>
+    <tr>
+      <td><b>Time Received</b></td>
+      <td><%= form_response.created_at %></td>
+    </tr>
+    <tr>
+      <% form_response.content.each do |name, value| %>
+        <tr>
+          <td><b><%= name %></b></td>
+          <td>
+             <% if !value.empty? %>
+               <%= value %>
+             <% else %>
+               [no response]
+             <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <%= button_to "Delete", { :action => "delete_form_response", :id => form_response.id },
+                                :confirm => "Are you sure you want to delete this response?" %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <h5>There are no form responses yet for this form</h5> 
+<% end %>

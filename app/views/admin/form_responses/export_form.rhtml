@@ -1,0 +1,39 @@
+<h1>Export Form Responses</h1>
+
+<p>Select a form name and a date range. Then choose 'Export' to generate an XML file.</p>
+
+<% form_tag(:action => 'export') do -%>
+  <table cellpadding="5">
+    <tr>
+      <td>Form Name:</td>
+      <td>
+        <%= @form_response.name %>
+        <input type="hidden" name="filter[name]" value="<%= @form_response.name %>">
+	  </td>
+    </tr>
+    <tr>
+	  <td colspan="2">Fields to Export</td>
+	</tr>
+	<%= render(:partial => "form_field_inputs",
+	           :locals => { :form_fields => @form_fields })%>
+    <tr>
+      <td>Export Format:</td>
+      <td><%= select(:options, :format, @export_formats) %></td>
+    </tr>
+    <tr>
+      <td>Start Date:</td>
+      <td><%= datetime_select(:filter, :start_time) %></td>
+    </tr>
+    <tr>
+      <td>End Date:</td>
+      <td><%= datetime_select(:filter, :end_time) %></td>
+    </tr>
+    <tr>
+	  <td><%= check_box(:options, :download_data) %>Download to File</td>
+	  <td><%= check_box(:options, :show_timestamps, { :checked => 'checked'}) %>Show Timestamps</td>
+	</tr>
+    <tr>
+      <td colspan="2"><%= submit_tag('Export') %></td>
+    </tr>
+  </table>
+<% end -%>

@@ -9,18 +9,21 @@ class DatabaseFormPage < Page
     @request, @response = request, response
     @form_name, @form_error = nil, nil
     if request.post?
-      @form_data = request.parameters[:content].to_hash
+      @form_data = @request.parameters[:content].to_hash
 
       # Remove certain fields from hash
       form_data.delete("Submit")  
       form_data.delete("Ignore")  
       form_data.delete_if { |key, value| key.match(/_verify$/) }
 
-      @form_name = request.parameters[:form_name]
-      redirect_to = request.parameters[:redirect_to]
+      @form_name = @request.parameters[:form_name]
+      redirect_to = @request.parameters[:redirect_to]
 
       if save_form and redirect_to
-        response.redirect(redirect_to, '302')
+        #Trim the leading / off the slug
+        redirect_to = redirect_to.gsub(/^\//, '')
+        @response.body = redirect_to
+        @response.body = Page.find(:first, :conditions => ["slug = ?", redirect_to]).render
       else
         super(request, response) 
       end

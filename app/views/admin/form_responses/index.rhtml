@@ -1,23 +1,15 @@
-<h1>Export Form Responses</h1>
+<h1>Select a Form to List</h1>
 
-<p>Select a form name and a date range. Then choose 'Export' to generate an XML file.</p>
+<% if !@form_names.nil? and @form_names.size > 0 %>
+<% for form_name in @form_names %>
+  <b><%= form_name %></b>
+  <%= link_to 'List', :action =>'show_form', :name => form_name %>
+  <%= link_to 'Export', :action => 'export_form', :name => form_name %>
+  <br /><br />
+<% end %>
+<% else %>
+<br/>
+<h4>There are no forms created yet, you need to create a database form <%= link_to "page", :controller => 'page', :action => 'index' %> first.</h4>
+<% end %>
+<br/>
 
-<% form_tag(:action => 'export') do -%>
-  <table cellpadding="5">
-    <tr>
-      <td>Form Name:</td>
-      <td><%= select(:filter, :name, @form_names) %></td>
-    </tr>
-    <tr>
-      <td>Start Date:</td>
-      <td><%= datetime_select(:filter, :start_time) %></td>
-    </tr>
-    <tr>
-      <td>End Date:</td>
-      <td><%= datetime_select(:filter, :end_time) %></td>
-    </tr>
-    <tr>
-      <td colspan="2"><%= submit_tag('Export') %></td>
-    </tr>
-  </table>
-<% end -%>
