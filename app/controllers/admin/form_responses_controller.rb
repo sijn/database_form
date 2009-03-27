@@ -8,7 +8,7 @@ class Admin::FormResponsesController < ApplicationController
   #Form Response Management
   def show_form
     # TODO: Any form of pagination
-    @form_responses = FormResponse.find_by_name(params[:name])
+    @form_responses = FormResponse.find(:all, :conditions => ['name = ? ', params[:name]])
     if @form_responses.nil? or (!@form_responses.nil? and @form_responses.size.eql?(0))
       redirect_to :action => "index"
     end
