@@ -1,0 +1,29 @@
+03/2009 - Version 0.3 Release Notes
+
+This the beginning of a series of releases for database_form. In this release, we basically sexied it up a little bit and made it compatible with Radiant 0.6.7. New features include:
+
+*Form Response Browser
+*Delete Form Response 
+*Export to CSV Option
+*Download to File Option
+*Ability to include/exclude timestamps
+*Improved Granularity for Export. It is now possible to select only certain fields to export (such as only emails for mailing list generation)
+*Moved testing over to RSpec (www.rspec.info)
+
+Limitations
+
+*The form response browser doesn't do any form of pagination
+
+Future Features
+
+This is what is currently on our agenda. We'd like to see this extension get integrated into a newsletter or other form of contact/mailing list management. If you're interested in getting involved just drop me a line.  
+
+*Ability to send email to an arbitrary number of email addresses when a form is submitted
+*Integration of some form of CAPTCHA (most likely reCAPTCHA and a simple equation based CAPTCHA). 
+*Ability to clear a form
+*Ability to delete a form (or at least delete all the form responses when that DatabaseFormPage is deleted)
+*Ability to edit a form response (and bulk edit)
+*Ability to import responses into a form (if say one form is broken up into three forms and you want to keep the old data). 
+
+http://github.com/levelg/database_form
+http://www.levelg.com
