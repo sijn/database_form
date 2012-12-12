@@ -21,9 +21,9 @@ class DatabaseFormPage < Page
 
       if save_form and redirect_to
         #Trim the leading / off the slug
-        redirect_to = redirect_to.gsub(/^\//, '')
+        #redirect_to = redirect_to.gsub(/^\//, '')
         @response.body = redirect_to
-        @response.body = Page.find(:first, :conditions => ["slug = ?", redirect_to]).render
+        @response.body = Page.find_by_url(redirect_to).render
       else
         super(request, response) 
       end
