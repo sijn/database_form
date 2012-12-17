@@ -15,6 +15,7 @@ namespace :radiant do
       desc "Copies the Database Form extension assets to the public directory"
       task :update => :environment do
         FileUtils.cp DatabaseFormExtension.root + "/public/javascripts/validation.js", RAILS_ROOT + "/public/javascripts"
+	 FileUtils.cp DatabaseFormExtension.root + "/public/javascripts/prototype.js", RAILS_ROOT + "/public/javascripts"
       end
     end
   end

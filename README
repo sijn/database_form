@@ -57,6 +57,8 @@ validate-alpha, validate-alphanum, validate-date, validate-email,
 validate-url, validate-currency-dollar, validate-selection, and
 validate-one-required. You'll also need to include prototype in your layout,
 of course (IMPORTANT; without it validation won't work).
+NOTE: prototype.js version 1.7.1 is included in this release!!! (if your site already uses prototype remove the file!)
+NOTE2: you still need to include it your self :)
 
 <r:database:form name="contact" validate="true">
   <r:database:text name="name" validate="required"/>
